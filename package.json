@@ -1,7 +1,6 @@
 {
   "name": "e-commerce",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js"
@@ -12,5 +11,14 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "nodemon": "^2.0.16"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giangarof98/e-commerce.git"
+  },
+  "bugs": {
+    "url": "https://github.com/giangarof98/e-commerce/issues"
+  },
+  "homepage": "https://github.com/giangarof98/e-commerce#readme",
+  "description": ""
 }
