@@ -1,4 +1,5 @@
 const express = require('express');
+const userRepo = require('./repositories/user')
 const app = express();
 
 app.use(express.urlencoded({extended:true}))
@@ -32,8 +33,15 @@ app.get('/', (req,res) => {
 //     }
 // }
 
-app.post('/', (req,res) => {
-    console.log(req.body)
+app.post('/', async (req,res) => {
+    const {email, password, passwordConfirm} = req.body
+    const existingUser = await userRepo.getOneBy({email})
+    if(existingUser){
+        return res.send('Email in use');
+    }
+    if(password !== passwordConfirm){
+        return res.send('Password must match')
+    }
     res.send(`<div>created</div>`)
     
 })

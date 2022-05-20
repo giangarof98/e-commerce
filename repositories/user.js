@@ -22,7 +22,7 @@ class UsersRepository {
     }
 
     async create(attrs){
-        attrs.id =this.randomId();
+        attrs.id = this.randomId();
 
         const records = await this.getAll()
         records.push(attrs);
@@ -78,15 +78,19 @@ class UsersRepository {
 
     }
 }
-const test = async () => {
 
-    const repo = new UsersRepository('users.json');
-    //await repo.create({email:'x@x.com', password:'x'})
-    //const users = await repo.getAll();
-    //const user = await repo.getOne('3c0');
-    //console.log(user);
-    const user = await repo.getOneBy({id: 'd41a4e8f'});
-    console.log(user);
+module.exports = new UsersRepository('users.json');
 
-}
-test()
+
+// const test = async () => {
+
+//     const repo = new UsersRepository('users.json');
+//     //await repo.create({email:'x@x.com', password:'x'})
+//     //const users = await repo.getAll();
+//     //const user = await repo.getOne('3c0');
+//     //console.log(user);
+//     const user = await repo.getOneBy({id: 'd41a4e8f'});
+//     console.log(user);
+
+// }
+// test()
