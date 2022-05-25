@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieSession = require('cookie-session');
-const authRouter = require('./routes/admin/auth')
+const {check} = require('express-validator');
+const authRouter = require('./routes/admin/auth');
 const app = express();
 
 
