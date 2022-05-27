@@ -4,11 +4,13 @@ const userRepo = require('../../repositories/user');
 module.exports = {
     requireTitle: check('title')
         .trim()
-        .isLength({min:5, max:20}),
+        .isLength({min:5, max:20})
+        .withMessage('Must be between 5 and 40 characters'),
     requirePrice: check('price')
         .trim()
         .toFloat()
-        .isFloat({min:1}),
+        .isFloat({min:1})
+        .withMessage('1$ is the min'),
     requireEmail: check('email')
         .trim()
         .normalizeEmail()
