@@ -3,12 +3,12 @@ const multer = require('multer')
 
 const {handleError, requireAuth} = require('./middleware')
 const productsRepo = require('../../repositories/products')
-const productsNewTemplate = require('../../views/admin/products/new')
 const {requirePrice, requireTitle} = require('./validators')
+const productsNewTemplate = require('../../views/admin/products/new')
 const productsIndexTemplate = require('../../views/admin/products/index')
-
-const router = express.Router();
+const productsEditTemplate = require('../../views/admin/products/edit')
 const upload = multer({storage:multer.memoryStorage()});
+const router = express.Router();
 
 router.get('/admin/products', requireAuth, async (req,res) => {
     
@@ -26,6 +26,20 @@ router.post('/admin/products/new', requireAuth, upload.single('image'), [require
     await productsRepo.create({ title,price,image });
     //console.log(req.body);
     res.redirect('/admin/products');
+});
+
+router.get('/admin/products/:id/edit', requireAuth, async (req,res) => {
+    const product = await productsRepo.getOne(req.params.id);
+
+    if(!product){
+        return res.send('Product not found')
+    }
+
+    res.send(productsEditTemplate({ product }))
+});
+
+router.post('/admin/products/:id/edit', requireAuth, async (req,res) => {
+    
 })
 
 
