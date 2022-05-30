@@ -19,13 +19,13 @@ router.post('/signup', [requireEmail, requirePassword, requirePasswordConfirm], 
     const user = await userRepo.create({email, password});
     //store id inside cookies
     req.session.userId = user.id;
-    res.send(`<div>created</div>`)
+    res.redirect('/admin/products')
     
 })
 
 router.get('/signout', (req,res) => {
     req.session = null;
-    res.send('You are logged out');
+    res.redirect('/signin')
 })
 
 router.get('/signin', (req,res) => {
@@ -37,7 +37,7 @@ router.post('/signin', [requireExistingEmail, requireExistingPassword], handleEr
     const user = await userRepo.getOneBy({email});
 
     req.session.userId = user.id;
-    res.send('You are signed in')
+    res.redirect('/admin/products')
 })
 
 module.exports = router;

@@ -24,7 +24,7 @@ router.post('/admin/products/new', upload.single('image'), [requirePrice, requir
     const {title,price} = req.body;
     await productsRepo.create({ title,price,image });
     //console.log(req.body);
-    res.send('submited');
+    res.redirect('/admin/products');
 })
 
 
